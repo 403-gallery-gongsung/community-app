@@ -2,3 +2,5 @@ rootProject.name = 'gallery'
 include 'core'
 include 'pc-web'
 include 'admin'
+include 'batch'
+
