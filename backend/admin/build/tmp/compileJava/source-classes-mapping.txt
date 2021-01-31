@@ -1,2 +1,2 @@
-Test.java
- Test
+com/gongsung/gallery/AdminApplication.java
+ com.gongsung.gallery.AdminApplication

@@ -10,11 +10,7 @@ buildscript {
     }
 }
 
-
 allprojects {
-    group = 'com.gongsung'
-    version = '0.0.1-SNAPSHOT'
-
     repositories {
         mavenCentral()
     }
@@ -25,19 +21,48 @@ subprojects {
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
-    repositories {
-        mavenCentral()
-    }
+    group = 'com.gongsung.gallery'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '11'
 
     dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-starter-aop'
+
         implementation 'org.springframework.boot:spring-boot-starter'
+
+        // use lombok
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
+
+        // commons-io
+        implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+
+        // test
+        testCompile group: 'junit', name: 'junit', version: '4.12'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    test {
+        useJUnitPlatform()
+        useJUnit()
     }
 }
 
+def executableProjects = [project(':admin'), project(':batch'), project(':pc-web')]
+def jarProjects = [project(':core')]
 
+configure(executableProjects) {
+    dependencies {
+        // executable projects에서 필요한 것들
+    }
+}
+
+configure(jarProjects) {
+    dependencies {
+        // jar projects에서 필요한 것들
+    }
+}
 
 project(':pc-web') {
     dependencies {
@@ -46,6 +71,12 @@ project(':pc-web') {
 }
 
 project(':admin') {
+    dependencies {
+        compile project(':core')
+    }
+}
+
+project(':batch') {
     dependencies {
         compile project(':core')
     }
