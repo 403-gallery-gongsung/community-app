@@ -38,7 +38,6 @@ subprojects {
 }
 
 
-
 project(':pc-web') {
     dependencies {
         compile project(':core')
@@ -50,3 +49,12 @@ project(':admin') {
         compile project(':core')
     }
 }
+
+
+/*
+// gradlew bootRun -Dspring.profiles.active=(prod/dev/local/test ... )으로 하기 위해서는 아래의 bootRun이 필요.. but 터짐;
+bootRun {
+    String activeProfile = System.properties['spring.profiles.active']
+    systemProperty "spring.profiles.active", activeProfile
+}
+*/
