@@ -1,4 +1,4 @@
-package com.gongsung.gallery.utils;
+package com.gongsung.gallery.advice;
 
 import domain.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,10 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import com.gongsung.gallery.exception.ServiceException;
-import com.gongsung.gallery.utils.MessageUtils;
+import exception.ServiceException;
+import utils.MessageUtils;
 
 /**
  * Global Exception Advice in Main Application
@@ -17,10 +19,10 @@ import com.gongsung.gallery.utils.MessageUtils;
  */
 @Slf4j
 @RestControllerAdvice
+@RequiredArgsConstructor
 public class GlobalExceptionRestControllerAdvice {
 
-    @Autowired
-    private MessageUtils messageUtils;
+    private final MessageUtils messageUtils;
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity handlerCommonException(Exception e) {

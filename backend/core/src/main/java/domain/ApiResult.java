@@ -1,7 +1,5 @@
 package domain;
 
-import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -36,7 +34,7 @@ public class ApiResult<T> {
         super();
     }
 
-    public ApiResult<T> statusCode(@NotNull StatusCode statusCode) {
+    public ApiResult<T> statusCode(StatusCode statusCode) {
         setStatusCode(statusCode);
         return this;
     }

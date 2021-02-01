@@ -1,4 +1,4 @@
-package com.gongsung.gallery.exception;
+package exception;
 
 import lombok.Getter;
 
