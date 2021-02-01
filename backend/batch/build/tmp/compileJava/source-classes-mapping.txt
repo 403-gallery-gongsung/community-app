@@ -1,2 +1,6 @@
 com/gongsung/gallery/BatchApplication.java
  com.gongsung.gallery.BatchApplication
+com/gongsung/gallery/util/MessageUtils.java
+ com.gongsung.gallery.util.MessageUtils
+com/gongsung/gallery/controller/TestController.java
+ com.gongsung.gallery.controller.TestController
