@@ -1,4 +1,4 @@
-package com.gongsung.gallery;
+package com.gongsung.gallery.batch;
 
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;

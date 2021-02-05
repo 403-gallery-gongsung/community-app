@@ -1,4 +1,4 @@
-package com.gongsung.gallery;
+package com.gongsung.gallery.batch;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

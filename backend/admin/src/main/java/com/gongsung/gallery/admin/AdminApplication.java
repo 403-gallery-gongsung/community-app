@@ -1,4 +1,4 @@
-package com.gongsung.gallery;
+package com.gongsung.gallery.admin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
