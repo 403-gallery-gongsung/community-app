@@ -1,4 +1,4 @@
-package com.gongsung.gallery.batch;
+package com.gongsung.gallery.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,10 +1,15 @@
-import org.springframework.data.annotation.Id;
+package com.gongsung.gallery.domain;
+
+
 
 import javax.persistence.*;
 
 @Entity
 public class Comment {
+
+
     @Id @GeneratedValue
+    @Column(name = "comment_id")
     private Long id;
     private String content;
     private String author;
