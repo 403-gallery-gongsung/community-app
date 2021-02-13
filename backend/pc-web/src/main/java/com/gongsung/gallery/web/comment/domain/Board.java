@@ -1,4 +1,4 @@
-import org.springframework.data.annotation.Id;
+package com.gongsung.gallery.web.comment.domain;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,7 +8,8 @@ import static javax.persistence.FetchType.LAZY;
 @Entity
 public class Board {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "board_id")
     private Long id;
     private String title;
@@ -16,7 +17,7 @@ public class Board {
     private String category;
 
     @OneToMany(mappedBy = "board")
-    private List comments;
+    private List<Comment> comments;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
