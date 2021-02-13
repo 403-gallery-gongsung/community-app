@@ -1,4 +1,4 @@
-package com.gongsung.gallery.batch;
+package com.gongsung.gallery.web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
