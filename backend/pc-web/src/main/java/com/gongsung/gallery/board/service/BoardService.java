@@ -1,7 +1,7 @@
 package com.gongsung.gallery.board.service;
 
-
 import com.gongsung.gallery.Board;
+import com.gongsung.gallery.User;
 import com.gongsung.gallery.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

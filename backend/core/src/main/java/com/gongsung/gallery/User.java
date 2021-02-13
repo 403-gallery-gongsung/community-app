@@ -1,4 +1,4 @@
-package com.gongsung.gallery.domain;
+package com.gongsung.gallery;
 
 import lombok.Getter;
 import lombok.Setter;

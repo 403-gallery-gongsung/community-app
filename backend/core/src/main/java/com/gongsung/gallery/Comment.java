@@ -1,4 +1,4 @@
-package com.gongsung.gallery.domain;
+package com.gongsung.gallery;
 
 
 
