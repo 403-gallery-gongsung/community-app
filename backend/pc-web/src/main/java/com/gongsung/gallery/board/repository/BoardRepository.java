@@ -1,7 +1,8 @@
-package com.gongsung.gallery.repository;
+package com.gongsung.gallery.board.repository;
 
-import com.gongsung.gallery.domain.Board;
-import com.gongsung.gallery.domain.User;
+import com.gongsung.gallery.Board;
+import com.gongsung.gallery;
+import com.gongsung.gallery.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

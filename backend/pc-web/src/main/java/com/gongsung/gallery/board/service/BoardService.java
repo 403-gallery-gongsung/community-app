@@ -1,9 +1,8 @@
-package com.gongsung.gallery.service;
+package com.gongsung.gallery.board.service;
 
 
-import com.gongsung.gallery.domain.Board;
-import com.gongsung.gallery.domain.User;
-import com.gongsung.gallery.repository.BoardRepository;
+import com.gongsung.gallery.Board;
+import com.gongsung.gallery.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +18,7 @@ public class BoardService {
 
 
     @Transactional
-    public Long write(Board board,String content,String title,String category){
+    public Long write(Board board, String content, String title, String category){
 
         board.setCategory(category);
         board.setTitle(title);
