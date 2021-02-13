@@ -1,4 +1,4 @@
-import org.springframework.data.annotation.Id;
+package com.gongsung.gallery.web.comment.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
