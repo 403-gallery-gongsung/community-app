@@ -1,13 +1,12 @@
-package com.gongsung.gallery.web.comment.api;
+package com.gongsung.gallery.comment.api;
 
-import com.gongsung.gallery.web.comment.domain.Comment;
-import com.gongsung.gallery.web.comment.service.CommentService;
+import com.gongsung.gallery.Comment;
+import com.gongsung.gallery.comment.service.CommentService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -55,7 +54,7 @@ public class CommentApiController {
             @PathVariable("id") Long id){
         Comment comment = commentService.findById(id);
         commentService.delete(comment);
-        return "지워졌음ㅋㅋ";
+        return "Completely removed";
     }
 
     @Data

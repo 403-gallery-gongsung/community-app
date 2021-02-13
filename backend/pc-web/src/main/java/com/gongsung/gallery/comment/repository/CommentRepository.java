@@ -1,6 +1,6 @@
-package com.gongsung.gallery.web.comment.repository;
+package com.gongsung.gallery.comment.repository;
 
-import com.gongsung.gallery.web.comment.domain.Comment;
+import com.gongsung.gallery.Comment;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

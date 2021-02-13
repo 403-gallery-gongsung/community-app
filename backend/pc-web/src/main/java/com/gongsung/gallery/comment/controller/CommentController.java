@@ -1,7 +1,7 @@
-package com.gongsung.gallery.web.comment.controller;
+package com.gongsung.gallery.comment.controller;
 
-import com.gongsung.gallery.web.comment.domain.Comment;
-import com.gongsung.gallery.web.comment.repository.CommentRepository;
+import com.gongsung.gallery.Comment;
+import com.gongsung.gallery.comment.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
