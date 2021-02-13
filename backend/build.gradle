@@ -29,8 +29,6 @@ subprojects {
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.boot:spring-boot-starter-aop'
         implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-
-
         implementation 'org.springframework.boot:spring-boot-starter'
 
         // use lombok
@@ -54,6 +52,9 @@ subprojects {
         //Junit
         testImplementation("org.junit.vintage:junit-vintage-engine") {
             exclude group: "org.hamcrest", module: "hamcrest-core" }
+
+        //h2
+        runtimeOnly 'com.h2database:h2'
     }
 
     test {
