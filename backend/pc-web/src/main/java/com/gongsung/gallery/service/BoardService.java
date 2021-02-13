@@ -4,10 +4,11 @@ package com.gongsung.gallery.service;
 import com.gongsung.gallery.domain.Board;
 import com.gongsung.gallery.domain.User;
 import com.gongsung.gallery.repository.BoardRepository;
-import com.gongsung.gallery.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly=true)
@@ -31,8 +32,21 @@ public class BoardService {
     public Board createBoard(User user){
         Board board = new Board();
         board.setUser(user);
-
         return board;
+    }
+
+    @Transactional
+    public List<Board> scanBoard(String category){
+        List<Board> boardList;
+
+        if(category.equals("all")){
+            boardList=boardRepository.findAll();
+        }
+        else{
+            boardList=boardRepository.findCategory(category);
+        }
+
+        return boardList;
     }
 
 

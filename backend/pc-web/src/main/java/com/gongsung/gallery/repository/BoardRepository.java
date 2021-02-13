@@ -35,6 +35,13 @@ public class BoardRepository {
                 .getResultList();
     }
 
+    public List<Board> findCategory(String category){
+        return em.createQuery(" select o from Board o "+
+                " where o.category=:category")
+                .setParameter("category",category)
+                .getResultList();
+    }
+
 
 
 }
