@@ -4,12 +4,14 @@ import com.gongsung.gallery.Board;
 import com.gongsung.gallery.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@Transactional
 public class BoardRepository {
 
     private final EntityManager em;

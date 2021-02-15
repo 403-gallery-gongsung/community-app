@@ -10,14 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional(readOnly=true)
 @RequiredArgsConstructor
 public class BoardService {
 
     private final BoardRepository boardRepository;
 
-
-    @Transactional
     public Long write(Board board, String content, String title, String category){
 
         board.setCategory(category);
@@ -34,7 +31,7 @@ public class BoardService {
         return board;
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public List<Board> scanBoard(String category){
         List<Board> boardList;
 
@@ -49,18 +46,22 @@ public class BoardService {
     }
 
 
-    @Transactional
     public void deleteBoard(Long id){
         boardRepository.delete(id);
     }
 
-
-    @Transactional
     public void updateBoard(Long id,String content){
         Board board = boardRepository.findBoard(id);
         board.updateContent(content);
     }
 
+    public Board findById(Long id){
+        return boardRepository.findBoard(id);
+    }
+
+    public List<Board> findAll(){
+        return boardRepository.findAll();
+    }
 
     // 덧글 업데이트 ( 코멘트쪽에서 댓글을 등록후에 board의 comment 업데이트 필요 )
 
