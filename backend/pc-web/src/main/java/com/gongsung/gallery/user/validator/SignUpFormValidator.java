@@ -1,7 +1,6 @@
 package com.gongsung.gallery.user.validator;
 
 import com.gongsung.gallery.user.form.*;
-import com.gongsung.gallery.user.repository.UserRepository;
 import com.gongsung.gallery.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

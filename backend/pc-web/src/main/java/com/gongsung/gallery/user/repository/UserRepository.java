@@ -22,6 +22,10 @@ public class UserRepository {
         return Long.valueOf(list.size());
     }
 
+    public User findById(Long id) {
+        return entityManager.find(User.class, id);
+    }
+
     public User findByEmail(String email) {
         return entityManager.find(User.class, email);
     }
