@@ -2,9 +2,11 @@ package com.gongsung.gallery;
 
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import domain.BaseTimeEntity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,7 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @RequiredArgsConstructor
-public class Comment {
+public class Comment extends BaseTimeEntity {
 
     @Id @GeneratedValue
     @Column(name = "comment_id")

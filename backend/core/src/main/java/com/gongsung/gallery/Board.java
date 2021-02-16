@@ -6,13 +6,13 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
-
+import domain.BaseTimeEntity;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
 @Setter
-public class Board {
+public class Board  extends BaseTimeEntity{
 
 
     @Id

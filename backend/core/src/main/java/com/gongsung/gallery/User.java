@@ -1,7 +1,11 @@
 package com.gongsung.gallery;
 
-import lombok.Getter;
-import lombok.Setter;
+import domain.BaseTimeEntity;
+import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
@@ -10,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
-public class User {
+@Data @Builder
+@NoArgsConstructor @AllArgsConstructor
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
@@ -35,4 +39,5 @@ public class User {
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Board> boards = new ArrayList<>();
+
 }

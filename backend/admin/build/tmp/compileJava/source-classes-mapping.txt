@@ -1,2 +1,4 @@
-com/gongsung/gallery/AdminApplication.java
- com.gongsung.gallery.AdminApplication
+com/gongsung/gallery/admin/AdminApplication.java
+ com.gongsung.gallery.admin.AdminApplication
+com/gongsung/gallery/admin/SwaggerConfig.java
+ com.gongsung.gallery.admin.SwaggerConfig
