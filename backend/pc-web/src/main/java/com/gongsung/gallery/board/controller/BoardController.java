@@ -6,6 +6,7 @@ import com.gongsung.gallery.User;
 
 import com.gongsung.gallery.board.service.BoardService;
 import com.gongsung.gallery.user.repository.UserRepository;
+import com.gongsung.gallery.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,11 +23,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
 
-    @Autowired
-    private BoardService boardService;
+    private final BoardService boardService;
+    private final UserService userService;
 
-    @Autowired
-    private UserRepository userRepository;
 
     @GetMapping("/board/boardList/{category}")
     public String boardList(@PathVariable("category") String category, Model model){
@@ -48,7 +47,7 @@ public class BoardController {
     @PostMapping("/board/{userId}/writeBoard")
     public String writeBoard(@PathVariable("userId") Long userId,Board boardForm){
 
-        User user = userRepository.find(userId);
+        User user = userService.findById(userId);
         Board board = boardService.createBoard(user);
         boardService.write(board,boardForm.getContent(),boardForm.getTitle(),boardForm.getCategory());
 

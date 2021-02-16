@@ -1,21 +1,11 @@
-com/gongsung/gallery/user/repository/UserRepository.java
- com.gongsung.gallery.user.repository.UserRepository
-com/gongsung/gallery/config/SwaggerConfig.java
- com.gongsung.gallery.config.SwaggerConfig
-com/gongsung/gallery/WebApplication.java
- com.gongsung.gallery.WebApplication
-com/gongsung/gallery/config/SecurityConfig.java
- com.gongsung.gallery.config.SecurityConfig
-com/gongsung/gallery/config/PcWebConfig.java
- com.gongsung.gallery.config.PcWebConfig
 com/gongsung/gallery/board/service/BoardService.java
  com.gongsung.gallery.board.service.BoardService
 com/gongsung/gallery/user/mail/ConsoleMailSender.java
  com.gongsung.gallery.user.mail.ConsoleMailSender
-com/gongsung/gallery/comment/service/CommentService.java
- com.gongsung.gallery.comment.service.CommentService
-com/gongsung/gallery/board/repository/BoardRepository.java
- com.gongsung.gallery.board.repository.BoardRepository
+com/gongsung/gallery/config/SwaggerConfig.java
+ com.gongsung.gallery.config.SwaggerConfig
+com/gongsung/gallery/WebApplication.java
+ com.gongsung.gallery.WebApplication
 com/gongsung/gallery/comment/controller/CommentController.java
  com.gongsung.gallery.comment.controller.CommentController
 com/gongsung/gallery/comment/api/CommentApiController.java
@@ -23,13 +13,29 @@ com/gongsung/gallery/comment/api/CommentApiController.java
  com.gongsung.gallery.comment.api.CommentApiController$CommentDto
  com.gongsung.gallery.comment.api.CommentApiController$Result
  com.gongsung.gallery.comment.api.CommentApiController$UpdateRequest
-com/gongsung/gallery/comment/repository/CommentRepository.java
- com.gongsung.gallery.comment.repository.CommentRepository
-com/gongsung/gallery/user/form/SignUpForm.java
- com.gongsung.gallery.user.form.SignUpForm
+com/gongsung/gallery/board/controller/BoardController.java
+ com.gongsung.gallery.board.controller.BoardController
+com/gongsung/gallery/config/SecurityConfig.java
+ com.gongsung.gallery.config.SecurityConfig
 com/gongsung/gallery/user/controller/UserController.java
  com.gongsung.gallery.user.controller.UserController
 com/gongsung/gallery/user/service/UserService.java
  com.gongsung.gallery.user.service.UserService
 com/gongsung/gallery/user/validator/SignUpFormValidator.java
  com.gongsung.gallery.user.validator.SignUpFormValidator
+com/gongsung/gallery/config/PcWebConfig.java
+ com.gongsung.gallery.config.PcWebConfig
+com/gongsung/gallery/user/form/SignUpForm.java
+ com.gongsung.gallery.user.form.SignUpForm
+com/gongsung/gallery/comment/service/CommentService.java
+ com.gongsung.gallery.comment.service.CommentService
+com/gongsung/gallery/board/repository/BoardRepository.java
+ com.gongsung.gallery.board.repository.BoardRepository
+com/gongsung/gallery/board/api/BoardApiController.java
+ com.gongsung.gallery.board.api.BoardApiController
+ com.gongsung.gallery.board.api.BoardApiController$BoardDto
+ com.gongsung.gallery.board.api.BoardApiController$Result
+com/gongsung/gallery/user/repository/UserRepository.java
+ com.gongsung.gallery.user.repository.UserRepository
+com/gongsung/gallery/comment/repository/CommentRepository.java
+ com.gongsung.gallery.comment.repository.CommentRepository
