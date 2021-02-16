@@ -3,6 +3,7 @@ package com.gongsung.gallery.user.controller;
 import com.gongsung.gallery.User;
 import com.gongsung.gallery.user.service.UserService;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -56,8 +57,24 @@ public class UserController {
     return "account/check-email";
   }
 
+  @GetMapping("sign-in")
+  public String signInForm(Model model) {
+    model.addAttribute(new SignInForm());
+
+    return "account/sign-in";
+  }
+
+  @PostMapping("sign-in")
+  public String signInSubmit(String email, String passWord) throws Exception {
+    if (userService.passwordEquals(email, passWord)) {
+      return "account/sign-in-success";
+    }
+
+    return "account/sign-in-error";
+  }
+
   @GetMapping("/check-email-token")
-  public String checkEmailToken(Model model, String token, String email) {
+  public String checkEmailToken(Model model, String token, String email) throws Exception {
     User user = userService.findByEmail(email);
     String view = "account/check-email";
     if (user == null) {

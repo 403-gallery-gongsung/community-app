@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <form th:action="@{/board/{id}/writeBoard (id=${userId})}"  th:object="${boardForm}" method="post">
+        <label>글쓰기 제목입니다</label>
+        <input type="text" th:field="*{title}"
+               placeholder="제목을 입력하세요 ">
+        <input type="text" th:field="*{category}"
+               placeholder="카테고리를 입력하세요 ">
+        <input type="text" th:field="*{content}"
+               placeholder="내용을 입력하세요">
+        <button type="submit">Write</button>
+    </form>
+</body>
+</html>

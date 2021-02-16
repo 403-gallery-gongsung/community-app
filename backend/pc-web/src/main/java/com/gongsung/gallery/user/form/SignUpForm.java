@@ -13,7 +13,7 @@ public class SignUpForm {
   private String nickName;
 
   @NotBlank @Email
-  @Pattern(regexp = "")
+//  @Pattern(regexp = "")
   private String email;
 
   @NotBlank @Length(min = 8, max = 20)
