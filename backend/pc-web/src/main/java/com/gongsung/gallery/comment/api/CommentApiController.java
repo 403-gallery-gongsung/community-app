@@ -1,12 +1,15 @@
 package com.gongsung.gallery.comment.api;
 
+import com.gongsung.gallery.Board;
 import com.gongsung.gallery.Comment;
+import com.gongsung.gallery.board.service.BoardService;
 import com.gongsung.gallery.comment.service.CommentService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -16,10 +19,13 @@ import static java.util.stream.Collectors.toList;
 public class CommentApiController {
 
     private final CommentService commentService;
+    private final BoardService boardService;
 
-    @PostMapping("/api/comment")
-    public Long saveComment(@RequestBody CommentDto request){
-        Comment comment = new Comment(request.getAuthor(), request.getContent());
+    @PostMapping("/api/comment/{id}")
+    public Long saveComment(@PathVariable("id") Long id,
+                            @RequestBody CommentDto request){
+        Board board = boardService.findById(id);
+        Comment comment = Comment.createComment(board, request.getAuthor(), request.getContent());
         commentService.save(comment);
         return comment.getId();
     }
@@ -27,6 +33,7 @@ public class CommentApiController {
     @GetMapping("/api/comment/all")
     public List<CommentDto> getAllComments(){
         List<Comment> comments = commentService.findComments();
+        //List<CommentDto> commentDtos = new ArrayList<>();
         List<CommentDto> result = comments.stream()
                 .map(CommentDto::new)
                 .collect(toList());
@@ -64,9 +71,10 @@ public class CommentApiController {
 
     @Data
     @AllArgsConstructor
-    static class Result<T> {
+    static class Result<T, V> {
         private int count;
         private T data;
+        private V board;
     }
 
     @Data
