@@ -13,12 +13,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-//    http.authorizeRequests()
-//        .mvcMatchers("/api/**", "/sign-in", "/sign-up", "check-email-token","/swagger-ui.html","/**").permitAll()
-//        .anyRequest().authenticated();
-    http.httpBasic().disable()
-            .csrf().disable();
+    /*
+    http.authorizeRequests()
+        .mvcMatchers("/", "/sign-in", "/sign-up", "check-email-token").permitAll()
+        .anyRequest().authenticated();
+    */
 
+    http.httpBasic().disable()
+        .csrf().disable();
   }
 
   @Override

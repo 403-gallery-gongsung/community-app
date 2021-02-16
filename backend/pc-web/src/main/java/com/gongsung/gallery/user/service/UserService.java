@@ -4,6 +4,7 @@ import com.gongsung.gallery.User;
 import com.gongsung.gallery.user.form.*;
 import com.gongsung.gallery.user.repository.UserRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -29,11 +30,11 @@ public class UserService {
 
   public User findById(Long id) { return userRepository.findById(id); }
 
-  public User findByEmail(String email) {
+  public User findByEmail(String email) throws Exception{
     return userRepository.findByEmail(email);
   }
 
-  public boolean existsByEmail(String email) {
+  public boolean existsByEmail(String email) throws Exception{
     return userRepository.existsByEmail(email);
   }
 
@@ -41,20 +42,17 @@ public class UserService {
     return userRepository.findByNickName(nickName);
   }
 
-  public boolean existsByNickName(String nickName) {
-    return userRepository.existsByNickName(nickName);
-  }
+  public boolean existsByNickName(String nickName) { return userRepository.existsByNickName(nickName); }
 
   public List<User> findAll() {
     return userRepository.findAll();
   }
 
-
   private User save(SignUpForm signUpForm) {
     User user = User.builder()
         .email(signUpForm.getEmail())
         .nickname(signUpForm.getNickName())
-        .password(passwordEncoder.encode(signUpForm.getPassWord()))
+        .password(getEncodePassword(signUpForm.getPassWord()))
         .emailCheckToken(String.valueOf(UUID.randomUUID()))
         .build();
 
@@ -62,6 +60,11 @@ public class UserService {
 
     return user;
   }
+
+  public String getEncodePassword(String passWord) {
+    return passwordEncoder.encode(passWord);
+  }
+
 
   @Transactional
   public User createNewUser(SignUpForm signUpForm) {
@@ -83,8 +86,17 @@ public class UserService {
 
   public void login(User user) {
     UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-        user.getNickname(), user.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_USER"))
-    );
+        user.getNickname(), user.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_USER")));
+
     SecurityContextHolder.getContext().setAuthentication(token);
+  }
+
+  public boolean passwordEquals(String email,String password) throws Exception {
+    User user = this.findByEmail(email);
+    if (passwordEncoder.matches(password,user.getPassword())) {
+      return true;
+    }
+
+    return false;
   }
 }

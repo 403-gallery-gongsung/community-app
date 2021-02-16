@@ -1,9 +1,9 @@
 package com.gongsung.gallery.user.validator;
 
 import com.gongsung.gallery.user.form.*;
-import com.gongsung.gallery.user.repository.UserRepository;
 import com.gongsung.gallery.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -19,6 +19,7 @@ public class SignUpFormValidator implements Validator {
     return clazz.isAssignableFrom(SignUpForm.class);
   }
 
+  @SneakyThrows(Exception.class)
   @Override
   public void validate(Object target, Errors errors) {
     SignUpForm signUpForm = (SignUpForm)target;
