@@ -2,12 +2,10 @@ package com.gongsung.gallery.user.repository;
 
 
 import com.gongsung.gallery.User;
-import java.util.Comparator;
+import com.gongsung.gallery.user.dto.UserDto;
 import java.util.List;
 import java.util.Optional;
-import java.util.PriorityQueue;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

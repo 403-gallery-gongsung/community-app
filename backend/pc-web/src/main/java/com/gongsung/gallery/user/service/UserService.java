@@ -1,10 +1,10 @@
 package com.gongsung.gallery.user.service;
 
 import com.gongsung.gallery.User;
-import com.gongsung.gallery.user.form.*;
+import com.gongsung.gallery.user.dto.SignUpDto;
+import com.gongsung.gallery.user.dto.UserDto;
 import com.gongsung.gallery.user.repository.UserRepository;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class UserService {
 
   public User findById(Long id) { return userRepository.findById(id); }
 
-  public User findByEmail(String email) throws Exception{
+  public User findByEmail(String email) {
     return userRepository.findByEmail(email);
   }
 
@@ -48,27 +48,26 @@ public class UserService {
     return userRepository.findAll();
   }
 
-  private User save(SignUpForm signUpForm) {
-    User user = User.builder()
-        .email(signUpForm.getEmail())
+  private User save(SignUpDto signUpForm) {
+    UserDto userDto = UserDto.builder().
+        email(signUpForm.getEmail())
         .nickname(signUpForm.getNickName())
-        .password(getEncodePassword(signUpForm.getPassWord()))
+        .password(getEncodePassword(signUpForm.getPassword()))
         .emailCheckToken(String.valueOf(UUID.randomUUID()))
         .build();
 
-    userRepository.save(user);
-
-    return user;
+    userRepository.save(userDto.toEntity());
+    return userDto.toEntity();
   }
 
-  public String getEncodePassword(String passWord) {
-    return passwordEncoder.encode(passWord);
+  public String getEncodePassword(String password) {
+    return passwordEncoder.encode(password);
   }
 
 
   @Transactional
-  public User createNewUser(SignUpForm signUpForm) {
-    User newUser = save(signUpForm);
+  public User createNewUser(SignUpDto signUpDto) {
+    User newUser = this.save(signUpDto);
     sendSignUpConfirmEmail(newUser);
 
     return newUser;
@@ -86,12 +85,12 @@ public class UserService {
 
   public void login(User user) {
     UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-        user.getNickname(), user.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_USER")));
+        user.getEmail(), user.getPassword(), List.of(new SimpleGrantedAuthority("ROLE_USER")));
 
     SecurityContextHolder.getContext().setAuthentication(token);
   }
 
-  public boolean passwordEquals(String email,String password) throws Exception {
+  public boolean passwordEquals(String email,String password) {
     User user = this.findByEmail(email);
     if (passwordEncoder.matches(password,user.getPassword())) {
       return true;
