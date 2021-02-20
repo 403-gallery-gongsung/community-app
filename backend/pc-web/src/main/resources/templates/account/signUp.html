@@ -5,9 +5,9 @@
   <title>회원 가입</title>
 </head>
 <body>
-  <h2>계정 만들기</h2>
+  <h2>Sign-Up</h2>
 <!-- signUpForm field 조건 내용과 다르면 왜 small을 출력하지 않지? -->
-  <form action="#" th:action="@{/sign-up}" th:object="${signUpForm}" method="post" novalidate>
+  <form action="#" th:action="@{/signUp}" th:object="${signUpDto}" method="post" novalidate>
     <label for="nickName">닉네임</label>
     <input id="nickName" type="text" th:field="*{nickName}" required minlength="3" maxlength="20">
     닉네임은 3에서 20자사이 _-허용
@@ -23,9 +23,9 @@
     <br/>
 
     <label for="passWord">비밀번호</label>
-    <input id="passWord" type="password" th:field="*{passWord}" required minlength="8" maxlength="50">
+    <input id="passWord" type="password" th:field="*{password}" required minlength="8" maxlength="50">
     8에서 20자사이
-    <small th:if="${#fields.hasErrors('passWord')}" th:errors="*{passWord}">Password Error</small>
+    <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</small>
 
     <br/>
     <input type="submit" value="회원 가입">

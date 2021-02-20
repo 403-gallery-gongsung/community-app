@@ -1,8 +1,6 @@
 package com.gongsung.gallery;
 
 
-
-
 import domain.BaseTimeEntity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

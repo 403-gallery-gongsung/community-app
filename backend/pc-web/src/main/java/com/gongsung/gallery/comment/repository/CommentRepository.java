@@ -12,30 +12,31 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 public class CommentRepository {
-    private final EntityManager em;
 
-    public void save(Comment comment) {
-        em.persist(comment);
-    }
+  private final EntityManager em;
 
-    public Comment findOne(Long id){
-        return em.find(Comment.class, id);
-    }
+  public void save(Comment comment) {
+    em.persist(comment);
+  }
 
-    public List<Comment> findAll(){
-        return em.createQuery("select c from Comment c")
-                .getResultList();
-    }
+  public Comment findOne(Long id) {
+    return em.find(Comment.class, id);
+  }
 
-    public void remove(Long id){
-        em.remove(em.find(Comment.class, id));
-    }
+  public List<Comment> findAll() {
+    return em.createQuery("select c from Comment c")
+        .getResultList();
+  }
 
-    public List<Comment> findByAuthor(String author){
-        return em.createQuery("select c from Comment c where c.author = :name", Comment.class)
-                .setParameter("name", author)
-                .getResultList();
-    }
+  public void remove(Long id) {
+    em.remove(em.find(Comment.class, id));
+  }
+
+  public List<Comment> findByAuthor(String author) {
+    return em.createQuery("select c from Comment c where c.author = :name", Comment.class)
+        .setParameter("name", author)
+        .getResultList();
+  }
 
     /*public List<com.gongsung.gallery.core.Comment> findByBoardId(Long id){
         return em.createQuery(

@@ -2,12 +2,10 @@ package com.gongsung.gallery.user.repository;
 
 
 import com.gongsung.gallery.User;
-import java.util.Comparator;
+import com.gongsung.gallery.user.dto.UserDto;
 import java.util.List;
 import java.util.Optional;
-import java.util.PriorityQueue;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -36,15 +34,12 @@ public class UserRepository {
     List<User> userEmails = entityManager.createQuery(jpql).setParameter("email", email)
         .getResultList();
 
-    Optional<User> optionalUser = userEmails.stream().filter(user -> user.getEmail().equals(email)).findAny();
-    if (optionalUser.isPresent()) {
-      return optionalUser.get();
-    } else {
-      throw new NullPointerException();
-    }
+    Optional<User> optionalUser = userEmails.stream().filter(user -> user.getEmail().equals(email))
+        .findAny();
+    return optionalUser.orElseThrow(() -> new NullPointerException());
   }
 
-  public boolean existsByEmail(String email) throws Exception{
+  public boolean existsByEmail(String email) throws Exception {
     return findByEmail(email) == null ? true : false;
   }
 
