@@ -3,11 +3,13 @@ package com.gongsung.gallery.user.controller;
 import com.gongsung.gallery.User;
 import com.gongsung.gallery.user.service.UserService;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.startup.UserConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -28,7 +30,12 @@ public class UserController {
   private final UserService userService;
 
   @GetMapping("/")
-  public String index() {
+  public String index(Model model,HttpSession session) {
+    Long user_id = (Long)session.getAttribute("user_id");
+
+    if(user_id!=null)
+      model.addAttribute("session_id", user_id);
+
     return "index";
   }
 
@@ -75,29 +82,28 @@ public class UserController {
     return "account/sign-in";
   }
 
+
   @PostMapping("sign-in")
   public String signInSubmit(@Valid SignInDto signInDto,
       HttpSession session, HttpServletResponse response, Model model) {
     if (userService.passwordEquals(signInDto.getEmail(), signInDto.getPassword())) {
-      session.setAttribute("signInForm", signInDto);
-
-      Cookie cookie = new Cookie("signIn", signInDto.getEmail());
-      cookie.setPath("/");
-
       if (signInDto.isRemember()) {
+        Cookie cookie = new Cookie("signIn", signInDto.getEmail());
+        cookie.setPath("/");
         cookie.setMaxAge(60 * 60 * 24 * 7);
-      } else {
-        cookie.setMaxAge(0);
+        response.addCookie(cookie);
       }
 
-      response.addCookie(cookie);
-      userService.login(signInDto.toEntity());
+      User user = userService.findByEmail(signInDto.getEmail());
+      session.setAttribute("user_id",user.getId());
+//      session.setAttribute("user_id", userService.findByEmail(signInDto.getEmail()).getId());
+      session.setMaxInactiveInterval(60 * 10);
 
+      userService.login(signInDto.toEntity());
     }
 
     model.addAttribute("in", "로그인 됐지롱");
-    return "index";
-//    return "redirect:/";
+    return "redirect:/";
   }
 
 
