@@ -8,7 +8,7 @@
     <table>
       <thead>
       <tr>
-        <th>댓글 번호</th> <th>내용</th> <th>글쓴이</th>
+        <th>댓글 번호</th> <th>내용</th> <th>글쓴이</th> <th>작성 시간</th>
       </tr>
       </thead>
       <tbody>
@@ -16,6 +16,7 @@
         <td th:text="${comment.id}"></td>
         <td th:text="${comment.content}"></td>
         <td th:text="${comment.author}"></td>
+        <td th:text="${comment.getCreatedDate()}"></td>
       </tr>
       </tbody>
   </div>
