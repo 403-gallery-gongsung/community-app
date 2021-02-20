@@ -12,19 +12,29 @@
 
 
     <br/><br/>
-
+    <div th:object="${commentForm}">
     <label> 댓글내용 - 댓글저자 - 작성 시간</label>
     <th:block th:if="${board.getComments()!=0}">
       <div th:each="comment : ${board.getComments()}">
         <td th:text="${comment.content}"></td>
         <td th:text="${comment.author}"></td>
         <td th:text="${comment.getCreatedDate()}"></td>
+        <td th:if="${comment.author.equals(commentForm.getAuthor())}">
+          <form th:action="@{/comment/update/{boardId}/{commentId}
+          (boardId=${board.getId()}
+          ,commentId=${comment.getId()})}"
+                method="get">
+            <button type="submit">댓글 수정</button>
+            <!--  <a th:href="@{'/post/edit/' + ${boardDto.id}}">-->
+          </form>
+          </a>
+        </td>
       </div>
     </th:block>
 
     <div>
       <br/><br/>
-      <form th:action="@{/comment/write/{id} (id=${boardId})}"  th:object="${commentForm}" method="post">
+      <form th:action="@{/comment/write/{id} (id=${boardId})}" method="post">
         <h3>댓글 작성</h3>
         <label th:text="${commentForm.getAuthor()}"> </label>
         <input type="text" th:field="*{content}"

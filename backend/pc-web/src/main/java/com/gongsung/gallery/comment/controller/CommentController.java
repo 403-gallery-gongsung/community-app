@@ -56,21 +56,39 @@ public class CommentController {
         return "/comment/comment";
     }
 
-    @PutMapping("/comment/update/{id}")
-    public String updateComment(
-        @PathVariable("id") Long id,
-        @RequestBody UpdateRequest request) {
-        Comment comment = commentService.findById(id);
-        comment.updateContent(request.getContent());
-        return "redirect:/board/boardList/all";
+    @GetMapping("/comment/update/{boardId}/{commentId}")
+    public String updateCommentForm(
+        @PathVariable("boardId") Long boardId,
+        @PathVariable("commentId") Long commentId, Model model) {
+
+        Comment comment = commentService.findById(commentId);
+        CommentDto commentDto = new CommentDto(comment);
+        commentDto.setId(commentId);
+
+        model.addAttribute("boardId", boardId);
+        model.addAttribute("comment", commentDto);
+        return "/comment/updateComment";
     }
 
-    @PostMapping("/comment/delete/{id}")
+    @PostMapping("/comment/update/{boardId}/{commentId}")
+    public String updateComment(
+        @PathVariable("boardId") Long boardId,
+        @PathVariable("commentId") Long commentId,
+        CommentDto commentDto) {
+        Comment comment = commentService.findById(commentId);
+        comment.updateContent(commentDto.getContent());
+        commentService.save(comment);
+        System.out.println("무야~~호~~~~~~~ : " + commentDto.getContent() + " " + comment.getContent());
+        return "redirect:/board/" + boardId;
+    }
+
+    @PostMapping("/comment/delete/{boardId}/{commentId}")
     public String deleteComment(
-        @PathVariable("id") Long id) {
-        Comment comment = commentService.findById(id);
+        @PathVariable("boardId") Long boardId,
+        @PathVariable("commentId") Long commentId) {
+        Comment comment = commentService.findById(commentId);
         commentService.delete(comment);
-        return "redirect:/board/boardList/all";
+        return "redirect:/board/" + boardId;
     }
 
     @Data

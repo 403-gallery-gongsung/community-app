@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Getter
@@ -34,6 +35,7 @@ public class Comment extends BaseTimeEntity {
         this.setCreatedDate(LocalDateTime.now());
     }
 
+    @Transactional
     public void updateContent(String content){
         this.content = content;
         this.setModifiedDate(LocalDateTime.now());
