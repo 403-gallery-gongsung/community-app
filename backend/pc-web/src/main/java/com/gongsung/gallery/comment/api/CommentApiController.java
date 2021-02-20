@@ -18,6 +18,7 @@ import static java.util.stream.Collectors.toList;
 @RequiredArgsConstructor
 public class CommentApiController {
 
+
     private final CommentService commentService;
     private final BoardService boardService;
 
@@ -85,7 +86,6 @@ public class CommentApiController {
 
         private String author;
         private String content;
-
 
         public CommentDto(Comment c) {
             this.author = c.getAuthor();
