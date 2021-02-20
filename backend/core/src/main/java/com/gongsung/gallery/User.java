@@ -1,7 +1,6 @@
 package com.gongsung.gallery;
 
 import domain.BaseTimeEntity;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +22,6 @@ public class User extends BaseTimeEntity {
     @Column(name = "user_id")
     private Long id;
 
-
     @Column(unique = true)
     private String email;
     private String password;
@@ -39,5 +37,4 @@ public class User extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Board> boards = new ArrayList<>();
-
 }
