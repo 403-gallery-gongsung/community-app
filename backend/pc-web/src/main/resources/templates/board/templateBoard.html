@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div class="container">
+  <div th:object="${board}">
+    게시판 번호 : <span th:text="*{id}">></span><br/>
+    게시판 제목 : <span th:text="*{title}"></span><br/>
+    게시판 내용 : <span th:text="*{content}"></span><br/>
+    게시판 카테고리 : <span th:text="*{category}"></span><br/>
+    게시판 작성자 : <span th:text="*{user.nickname}"></span><br/>
+
+
+    <br/><br/>
+
+    <label> 댓글내용 - 댓글저자</label>
+    <th:block th:if="${board.getComments()!=0}">
+      <div th:each="comment : ${board.getComments()}">
+        <td th:text="${comment.content}"></td>
+        <td th:text="${comment.author}"></td>
+      </div>
+    </th:block>
+
+  </div>
+
+  <a th:href="@{/board/boardList/all}"> 뒤로가기 </a>
+
+
+</div>
+</body>
+</html>

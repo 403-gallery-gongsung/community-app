@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 
+
 # Log file
 *.log
 
@@ -27,11 +28,11 @@ hs_err_pid*
 
 backend/HELP.md
 backend/.gradle
-backend/build/
-backend/pc-web/build/
 backend/core/build/
+backend/pc-web/build/
 backend/admin/build/
 backend/batch/build/
+backend/build/
 backend/!gradle/wrapper/gradle-wrapper.jar
 backend/!**/src/main/**/build/
 backend/!**/src/test/**/build/

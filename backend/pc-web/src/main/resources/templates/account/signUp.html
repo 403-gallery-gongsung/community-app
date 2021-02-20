@@ -7,7 +7,7 @@
 <body>
   <h2>Sign-Up</h2>
 <!-- signUpForm field 조건 내용과 다르면 왜 small을 출력하지 않지? -->
-  <form action="#" th:action="@{/sign-up}" th:object="${signUpDto}" method="post" novalidate>
+  <form action="#" th:action="@{/signUp}" th:object="${signUpDto}" method="post" novalidate>
     <label for="nickName">닉네임</label>
     <input id="nickName" type="text" th:field="*{nickName}" required minlength="3" maxlength="20">
     닉네임은 3에서 20자사이 _-허용
