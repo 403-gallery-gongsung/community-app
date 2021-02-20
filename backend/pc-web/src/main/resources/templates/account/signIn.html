@@ -7,7 +7,7 @@
 <body>
   <h2>Sign-In</h2>
 <!-- signUpForm field 조건 내용과 다르면 왜 small을 출력하지 않지? -->
-  <form action="#" th:action="@{/sign-in}" th:object="${signInDto}" method="post" novalidate>
+  <form action="#" th:action="@{/signIn}" th:object="${signInDto}" method="post" novalidate>
     <label for="email">이메일</label>
     <input id="email" type="text" th:field="*{email}" required>
     이메일 형식

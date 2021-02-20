@@ -7,15 +7,15 @@
 </head>
 <body>
     <ul>
-        <li sec:authorize="!isAuthenticated()"><a href="#" th:href="@{/sign-in}">로그인</a></li>
-        <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/sign-out}">로그아웃</a></li>
-        <li sec:authorize="!isAuthenticated()"><a href="#" th:href="@{/sign-up}">회원가입</a></li>
+        <li sec:authorize="!isAuthenticated()"><a href="#" th:href="@{/signIn}">로그인</a></li>
+        <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/signOut}">로그아웃</a></li>
+        <li sec:authorize="!isAuthenticated()"><a href="#" th:href="@{/signUp}">회원가입</a></li>
         <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/boards}">게시판</a></li>
         <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/comments}">댓글</a></li>
     </ul>
 
 <h2 th:text="${in}"></h2>
-<h2 th:text="${session_id}"></h2>
+<h2 th:text="${sessionId}"></h2>
 
 </body>
 </html>
