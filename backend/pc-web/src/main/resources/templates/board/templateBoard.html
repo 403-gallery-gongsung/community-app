@@ -21,8 +21,19 @@
       </div>
     </th:block>
 
+    <div>
+      <br/><br/>
+      <form th:action="@{/comment/write/{id} (id=${boardId})}"  th:object="${commentForm}" method="post">
+        <h3>댓글 작성</h3>
+        <label th:text="${commentForm.getAuthor()}"> </label>
+        <input type="text" th:field="*{content}"
+               placeholder="내용을 입력하세요 ">
+        <button type="submit">댓글 쓰기</button>
+      </form>
+    </div>
   </div>
 
+  <br/><br/>
   <a th:href="@{/board/boardList/all}"> 뒤로가기 </a>
 
 
