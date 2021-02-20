@@ -23,7 +23,7 @@ public class CommentApiController {
 
     @PostMapping("/api/comment/{id}")
     public Long saveComment(@PathVariable("id") Long id,
-                            @RequestBody CommentDto request){
+        @RequestBody CommentDto request) {
         Board board = boardService.findById(id);
         Comment comment = Comment.createComment(board, request.getAuthor(), request.getContent());
         commentService.save(comment);
@@ -31,26 +31,26 @@ public class CommentApiController {
     }
 
     @GetMapping("/api/comment/all")
-    public List<CommentDto> getAllComments(){
+    public List<CommentDto> getAllComments() {
         List<Comment> comments = commentService.findComments();
         //List<CommentDto> commentDtos = new ArrayList<>();
         List<CommentDto> result = comments.stream()
-                .map(CommentDto::new)
-                .collect(toList());
+            .map(CommentDto::new)
+            .collect(toList());
         //return new Result(result.size(), result);
         return result;
     }
 
     @GetMapping("/api/comment/{id}")
-    public CommentDto getComment(@PathVariable("id") Long id){
+    public CommentDto getComment(@PathVariable("id") Long id) {
         Comment comment = commentService.findById(id);
         return new CommentDto(comment);
     }
 
     @PutMapping("/api/comment/update/{id}")
     public CommentDto updateComment(
-            @PathVariable("id") Long id,
-            @RequestBody UpdateRequest request){
+        @PathVariable("id") Long id,
+        @RequestBody UpdateRequest request) {
         Comment comment = commentService.findById(id);
         comment.updateContent(request.getContent());
         return new CommentDto(comment);
@@ -58,20 +58,22 @@ public class CommentApiController {
 
     @PostMapping("/api/comment/delete/{id}")
     public String deleteComment(
-            @PathVariable("id") Long id){
+        @PathVariable("id") Long id) {
         Comment comment = commentService.findById(id);
         commentService.delete(comment);
         return "Completely removed";
     }
 
     @Data
-    static class UpdateRequest{
+    static class UpdateRequest {
+
         String content;
     }
 
     @Data
     @AllArgsConstructor
     static class Result<T, V> {
+
         private int count;
         private T data;
         private V board;
@@ -80,6 +82,7 @@ public class CommentApiController {
     @Data
     @AllArgsConstructor
     static class CommentDto {
+
         private String author;
         private String content;
 
