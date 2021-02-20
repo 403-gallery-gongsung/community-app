@@ -34,15 +34,12 @@ public class UserRepository {
     List<User> userEmails = entityManager.createQuery(jpql).setParameter("email", email)
         .getResultList();
 
-    Optional<User> optionalUser = userEmails.stream().filter(user -> user.getEmail().equals(email)).findAny();
-    if (optionalUser.isPresent()) {
-      return optionalUser.get();
-    } else {
-      throw new NullPointerException();
-    }
+    Optional<User> optionalUser = userEmails.stream().filter(user -> user.getEmail().equals(email))
+        .findAny();
+    return optionalUser.orElseThrow(() -> new NullPointerException());
   }
 
-  public boolean existsByEmail(String email) throws Exception{
+  public boolean existsByEmail(String email) throws Exception {
     return findByEmail(email) == null ? true : false;
   }
 

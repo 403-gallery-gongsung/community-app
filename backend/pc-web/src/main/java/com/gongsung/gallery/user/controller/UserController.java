@@ -4,15 +4,12 @@ import com.gongsung.gallery.User;
 import com.gongsung.gallery.user.service.UserService;
 import java.time.LocalDateTime;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.gongsung.gallery.user.dto.*;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequiredArgsConstructor
@@ -81,13 +77,13 @@ public class UserController {
 
   @PostMapping("sign-in")
   public String signInSubmit(@Valid SignInDto signInDto,
-      HttpSession session,HttpServletResponse response, Model model) {
+      HttpSession session, HttpServletResponse response, Model model) {
     if (userService.passwordEquals(signInDto.getEmail(), signInDto.getPassword())) {
-      session.setAttribute("signInForm",signInDto);
+      session.setAttribute("signInForm", signInDto);
 
       Cookie cookie = new Cookie("signIn", signInDto.getEmail());
-
       cookie.setPath("/");
+
       if (signInDto.isRemember()) {
         cookie.setMaxAge(60 * 60 * 24 * 7);
       } else {
@@ -106,7 +102,7 @@ public class UserController {
 
 
   @GetMapping("sign-out")
-  public String signOutSubmit(HttpSession session,Model model) {
+  public String signOutSubmit(HttpSession session, Model model) {
     session.invalidate();
 
     model.addAttribute("out", "로그아웃 됐지롱");

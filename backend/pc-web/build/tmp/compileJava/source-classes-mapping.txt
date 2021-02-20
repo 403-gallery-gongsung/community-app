@@ -20,12 +20,10 @@ com/gongsung/gallery/comment/repository/CommentRepository.java
  com.gongsung.gallery.comment.repository.CommentRepository
 com/gongsung/gallery/config/SecurityConfig.java
  com.gongsung.gallery.config.SecurityConfig
-com/gongsung/gallery/user/repository/UserRepository.java
- com.gongsung.gallery.user.repository.UserRepository
-com/gongsung/gallery/board/api/BoardApiController.java
- com.gongsung.gallery.board.api.BoardApiController
- com.gongsung.gallery.board.api.BoardApiController$BoardDto
- com.gongsung.gallery.board.api.BoardApiController$Result
+com/gongsung/gallery/comment/service/CommentService.java
+ com.gongsung.gallery.comment.service.CommentService
+com/gongsung/gallery/user/dto/SignUpDto.java
+ com.gongsung.gallery.user.dto.SignUpDto
 com/gongsung/gallery/board/repository/BoardRepository.java
  com.gongsung.gallery.board.repository.BoardRepository
 com/gongsung/gallery/config/PcWebConfig.java
@@ -33,15 +31,17 @@ com/gongsung/gallery/config/PcWebConfig.java
 com/gongsung/gallery/user/dto/UserDto.java
  com.gongsung.gallery.user.dto.UserDto
  com.gongsung.gallery.user.dto.UserDto$UserDtoBuilder
-com/gongsung/gallery/comment/service/CommentService.java
- com.gongsung.gallery.comment.service.CommentService
-com/gongsung/gallery/user/dto/SignUpDto.java
- com.gongsung.gallery.user.dto.SignUpDto
 com/gongsung/gallery/user/validator/SignUpValidator.java
  com.gongsung.gallery.user.validator.SignUpValidator
 com/gongsung/gallery/board/controller/BoardController.java
  com.gongsung.gallery.board.controller.BoardController
-com/gongsung/gallery/user/service/UserService.java
- com.gongsung.gallery.user.service.UserService
 com/gongsung/gallery/user/controller/UserController.java
  com.gongsung.gallery.user.controller.UserController
+com/gongsung/gallery/board/api/BoardApiController.java
+ com.gongsung.gallery.board.api.BoardApiController
+ com.gongsung.gallery.board.api.BoardApiController$BoardDto
+ com.gongsung.gallery.board.api.BoardApiController$Result
+com/gongsung/gallery/user/service/UserService.java
+ com.gongsung.gallery.user.service.UserService
+com/gongsung/gallery/user/repository/UserRepository.java
+ com.gongsung.gallery.user.repository.UserRepository
