@@ -1,9 +1,0 @@
-domain/BaseTimeEntity.java
- domain.BaseTimeEntity
-com/gongsung/gallery/User.java
- com.gongsung.gallery.User
- com.gongsung.gallery.User$UserBuilder
-com/gongsung/gallery/Comment.java
- com.gongsung.gallery.Comment
-com/gongsung/gallery/Board.java
- com.gongsung.gallery.Board
