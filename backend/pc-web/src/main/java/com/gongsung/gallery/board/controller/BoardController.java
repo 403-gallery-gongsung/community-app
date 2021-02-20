@@ -54,5 +54,14 @@ public class BoardController {
         return "redirect:/board/boardList/all";
     }
 
+    @GetMapping("/board/{boardId}")
+    public String readBoard(@PathVariable("boardId") Long boardId,Model model){
+
+        Board board = boardService.findById(boardId);
+        model.addAttribute("board",board);
+        return "board/templateBoard";
+    }
+
+
 
 }
