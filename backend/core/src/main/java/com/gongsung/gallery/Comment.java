@@ -3,6 +3,7 @@ package com.gongsung.gallery;
 
 import com.fasterxml.jackson.databind.ser.Serializers.Base;
 import domain.BaseTimeEntity;
+import java.util.List;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,6 +29,9 @@ public class Comment extends BaseTimeEntity {
     @JoinColumn(name = "board_id")
     @JsonIgnore
     private Board board;
+
+    @OneToMany(mappedBy = "comment")
+    private List<Reply> replies;
 
     public Comment(String author, String content) {
         this.author = author;

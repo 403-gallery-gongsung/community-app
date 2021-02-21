@@ -4,6 +4,7 @@ import com.gongsung.gallery.Board;
 import com.gongsung.gallery.Comment;
 import com.gongsung.gallery.board.service.BoardService;
 import com.gongsung.gallery.comment.service.CommentService;
+import com.gongsung.gallery.reply.api.ReplyDto;
 import com.gongsung.gallery.user.service.UserService;
 import javax.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
@@ -11,7 +12,6 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -44,7 +44,6 @@ public class CommentApiController {
         List<CommentDto> result = comments.stream()
             .map(CommentDto::new)
             .collect(toList());
-        //return new Result(result.size(), result);
         return result;
     }
 
@@ -60,8 +59,8 @@ public class CommentApiController {
         @RequestBody UpdateRequest request) {
 
         Comment comment = commentService.findById(commentId);
-
         comment.updateContent(request.getContent());
+        commentService.save(comment);
         return new CommentDto(comment);
     }
 
@@ -93,10 +92,12 @@ public class CommentApiController {
 
         private String author;
         private String content;
+        private List<ReplyDto> replyList;
 
         public CommentDto(Comment c) {
             this.author = c.getAuthor();
             this.content = c.getContent();
+            this.replyList = c.getReplies().stream().map(ReplyDto::new).collect(toList());
         }
     }
 }
