@@ -78,7 +78,6 @@ public class CommentController {
         Comment comment = commentService.findById(commentId);
         comment.updateContent(commentDto.getContent());
         commentService.save(comment);
-        System.out.println("무야~~호~~~~~~~ : " + commentDto.getContent() + " " + comment.getContent());
         return "redirect:/board/" + boardId;
     }
 
