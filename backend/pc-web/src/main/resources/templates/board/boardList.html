@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<th:block th:replace="fragment/scriptFragment :: scriptFragment"></th:block>
 <body>
 <div class="container">
     <div>
@@ -30,5 +30,6 @@
       </table>
     </div>
 </div>
+<th:block th:replace="fragment/footerFragment :: footerFragment"></th:block>
 </body>
 </html>
