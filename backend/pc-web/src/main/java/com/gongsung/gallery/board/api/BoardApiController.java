@@ -3,6 +3,7 @@ package com.gongsung.gallery.board.api;
 import com.gongsung.gallery.Board;
 import com.gongsung.gallery.User;
 import com.gongsung.gallery.board.service.BoardService;
+import com.gongsung.gallery.comment.controller.CommentDto;
 import com.gongsung.gallery.user.repository.UserRepository;
 import com.gongsung.gallery.user.service.UserService;
 import javax.servlet.http.HttpSession;
@@ -64,11 +65,13 @@ public class BoardApiController {
         String category;
         String content;
         String title;
+        List<CommentDto> comments;
 
         public BoardDto(Board board) {
             this.title = board.getTitle();
             this.content = board.getContent();
             this.category = board.getCategory();
+            this.comments = board.getComments().stream().map(CommentDto::new).collect(toList());
         }
     }
 }
