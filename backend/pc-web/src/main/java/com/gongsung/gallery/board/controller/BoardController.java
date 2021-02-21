@@ -5,12 +5,14 @@ import com.gongsung.gallery.User;
 
 
 import com.gongsung.gallery.board.service.BoardService;
+import com.gongsung.gallery.comment.controller.CommentDto;
 import com.gongsung.gallery.user.dto.UserDto;
 import com.gongsung.gallery.user.repository.UserRepository;
 import com.gongsung.gallery.user.service.UserService;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,15 +75,16 @@ public class BoardController {
 
     return "redirect:/board/boardList/all";
   }
-
     @GetMapping("/board/{boardId}")
-    public String readBoard(@PathVariable("boardId") Long boardId,Model model){
+    public String readBoard(@PathVariable("boardId") Long boardId, Model model, HttpSession session){
+        Long userId = (Long) session.getAttribute("userId");
+        String author = userService.findById(userId).getNickname();
+        CommentDto commentDto = new CommentDto();
+        commentDto.setAuthor(author);
 
         Board board = boardService.findById(boardId);
         model.addAttribute("board",board);
+        model.addAttribute("commentForm", commentDto);
         return "board/templateBoard";
     }
-
-
-
 }

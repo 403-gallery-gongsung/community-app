@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+      <form th:action="@{/comment/update/{boardId}/{commentId} (boardId=${boardId}, commentId=${comment.id})}" method="post">
+        <h2>댓글 수정</h2>
+        작성자 : <span th:text="${comment.author}"></span> <br/>
+        내용 : <textarea name="content" th:text="${comment.content}"></textarea> <br/>
+        <button type="submit">Write</button>
+      </form>
+</body>
+</html>
