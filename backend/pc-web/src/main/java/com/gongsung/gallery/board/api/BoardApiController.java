@@ -4,6 +4,8 @@ import com.gongsung.gallery.Board;
 import com.gongsung.gallery.User;
 import com.gongsung.gallery.board.service.BoardService;
 import com.gongsung.gallery.user.repository.UserRepository;
+import com.gongsung.gallery.user.service.UserService;
+import javax.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -21,15 +23,17 @@ import static java.util.stream.Collectors.*;
 @Transactional
 public class BoardApiController {
 
+    private final UserService userService;
     private final BoardService boardService;
     private final UserRepository userRepository;
 
     @PostMapping("/board/write/{name}")
     public Long write(@PathVariable("name") String name,
-                      @RequestBody BoardDto boardDto){
-        User user = new User();
-        user.setNickname(name);
-        userRepository.save(user);
+                      @RequestBody BoardDto boardDto,
+        HttpSession session){
+
+        Long userId = (Long) session.getAttribute("userId");
+        User user = userService.findById(userId);
         Board board = boardService.createBoard(user);
         return boardService.write(board, boardDto.getContent(), boardDto.getTitle(), boardDto.getCategory());
     }
