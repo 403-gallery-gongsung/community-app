@@ -4,6 +4,8 @@ import com.gongsung.gallery.Board;
 import com.gongsung.gallery.Comment;
 import com.gongsung.gallery.board.service.BoardService;
 import com.gongsung.gallery.comment.service.CommentService;
+import com.gongsung.gallery.user.service.UserService;
+import javax.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -18,15 +20,20 @@ import static java.util.stream.Collectors.toList;
 @RequiredArgsConstructor
 public class CommentApiController {
 
-
+    private final UserService userService;
     private final CommentService commentService;
     private final BoardService boardService;
 
-    @PostMapping("/api/comment/{id}")
-    public Long saveComment(@PathVariable("id") Long id,
-        @RequestBody CommentDto request) {
-        Board board = boardService.findById(id);
-        Comment comment = Comment.createComment(board, request.getAuthor(), request.getContent());
+    @PostMapping("/api/comment/write/{boardId}")
+    public Long saveComment(@PathVariable("boardId") Long boardId,
+        @RequestBody CommentDto request,
+        HttpSession session) {
+
+        Long userId = (Long) session.getAttribute("userId");
+        String author = userService.findById(userId).getNickname();
+
+        Board board = boardService.findById(boardId);
+        Comment comment = Comment.createComment(board, author, request.getContent());
         commentService.save(comment);
         return comment.getId();
     }
@@ -34,7 +41,6 @@ public class CommentApiController {
     @GetMapping("/api/comment/all")
     public List<CommentDto> getAllComments() {
         List<Comment> comments = commentService.findComments();
-        //List<CommentDto> commentDtos = new ArrayList<>();
         List<CommentDto> result = comments.stream()
             .map(CommentDto::new)
             .collect(toList());
@@ -48,11 +54,13 @@ public class CommentApiController {
         return new CommentDto(comment);
     }
 
-    @PutMapping("/api/comment/update/{id}")
+    @PutMapping("/api/comment/update/{commentId}")
     public CommentDto updateComment(
-        @PathVariable("id") Long id,
+        @PathVariable("commentId") Long commentId,
         @RequestBody UpdateRequest request) {
-        Comment comment = commentService.findById(id);
+
+        Comment comment = commentService.findById(commentId);
+
         comment.updateContent(request.getContent());
         return new CommentDto(comment);
     }
@@ -67,7 +75,6 @@ public class CommentApiController {
 
     @Data
     static class UpdateRequest {
-
         String content;
     }
 

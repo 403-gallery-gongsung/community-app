@@ -10,8 +10,8 @@
         <li sec:authorize="!isAuthenticated()"><a href="#" th:href="@{/signIn}">로그인</a></li>
         <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/signOut}">로그아웃</a></li>
         <li sec:authorize="!isAuthenticated()"><a href="#" th:href="@{/signUp}">회원가입</a></li>
-        <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/boards}">게시판</a></li>
-        <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/comments}">댓글</a></li>
+        <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/board/boardList/all}">게시판</a></li>
+        <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/comment/all}">댓글</a></li>
     </ul>
 
 <h2 th:text="${in}"></h2>
