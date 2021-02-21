@@ -39,7 +39,7 @@ subprojects {
         implementation 'org.springframework.boot:spring-boot-starter-mail'
         implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
         implementation 'org.springframework.boot:spring-boot-devtools'
-        
+        implementation 'org.springframework.boot:spring-boot-starter-websocket'
         //h2-DB
         implementation 'com.h2database:h2'
 

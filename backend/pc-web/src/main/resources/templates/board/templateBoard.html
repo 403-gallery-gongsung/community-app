@@ -1,14 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<th:block th:replace="fragment/scriptFragment :: scriptFragment"></th:block>
 <body>
 <div class="container">
+
   <div th:object="${board}">
     게시판 번호 : <span th:text="*{id}">></span><br/>
     게시판 제목 : <span th:text="*{title}"></span><br/>
     게시판 내용 : <span th:text="*{content}"></span><br/>
     게시판 카테고리 : <span th:text="*{category}"></span><br/>
     게시판 작성자 : <span th:text="*{user.nickname}"></span><br/>
+
 
 
     <br/><br/>
@@ -35,7 +37,17 @@
         </td>
       </div>
     </th:block>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function send() {
+          console.log("click");
 
+          targetUserId =/*[[ ${board.user.id} ]]*/;
+          sendMessage("게시물에 좋아요가 눌려졌습니다", targetUserId);
+        }
+        /*]]*/
+    </script>
+    <button th:onclick="send()">좋아요</button>
     <div>
       <br/><br/>
       <form th:action="@{/comment/write/{id} (id=${boardId})}" method="post">
@@ -51,7 +63,7 @@
   <br/><br/>
   <a th:href="@{/board/boardList/all}"> 뒤로가기 </a>
 
-
 </div>
+<th:block th:replace="fragment/footerFragment :: footerFragment"></th:block>
 </body>
 </html>

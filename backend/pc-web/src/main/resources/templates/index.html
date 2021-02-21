@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<th:block th:replace="fragment/scriptFragment :: scriptFragment"></th:block>
+
 <head>
     <meta charset="UTF-8">
     <title>home</title>
@@ -16,6 +19,8 @@
 
 <h2 th:text="${in}"></h2>
 <h2 th:text="${sessionId}"></h2>
+
+    <th:block th:replace="fragment/footerFragment :: footerFragment"></th:block>
 
 </body>
 </html>

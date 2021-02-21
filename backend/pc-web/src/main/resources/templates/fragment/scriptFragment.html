@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+<th:block th:fragment="scriptFragment">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+  <script src="/js/socket.js"></script>
+
+  <div sec:authorize="isAuthenticated()">
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      userId = /*[[ ${session.userId} ]]*/;
+      connect(userId);
+      /*]]*/
+    </script>
+  </div>
+</th:block>
+</html>

@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="fragment/scriptFragment :: scriptFragment"></th:block>
+
 <body>
     <form th:action="@{/board/writeBoard}"  th:object="${boardForm}" method="post">
         <label>글쓰기 제목입니다</label>
@@ -11,5 +13,6 @@
                placeholder="내용을 입력하세요">
         <button type="submit">Write</button>
     </form>
+    <th:block th:replace="fragment/footerFragment :: footerFragment"></th:block>
 </body>
 </html>
