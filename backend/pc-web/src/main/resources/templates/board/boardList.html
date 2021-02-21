@@ -3,25 +3,32 @@
 
 <body>
 <div class="container">
-  <div>
-    <table>
-      <thead>
-      <tr>
-        <th> 게시물 링크 </th> <th>글번호</th> <th>제목</th> <th>내용</th> <th>카테고리</th> <th>글쓴이</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="board : ${boards}">
-        <td th:onclick="'location.href = \'' + @{/board/{boardId} (boardId=${board.id})} + '\''" style="cursor:pointer;">링크로 이동</td>
-        <td th:text="${board.id}"></td>
-        <td th:text="${board.title}"></td>
-        <td th:text="${board.content}"></td>
-        <td th:text="${board.category}"></td>
-        <td th:text="${board.user.nickname}"></td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+    <div>
+      <table>
+            <thead>
+            <tr>
+                <th> 게시물 링크 </th> <th>글번호</th> <th>제목</th> <th>내용</th> <th>카테고리</th> <th>글쓴이</th> <th>comment 수</th> <th> comment </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board : ${boards}">
+                <td th:onclick="'location.href = \'' + @{/board/{boardId} (boardId=${board.id})} + '\''" style="cursor:pointer;">링크로 이동</td>
+                <td th:text="${board.id}"></td>
+                <td th:text="${board.title}"></td>
+                <td th:text="${board.content}"></td>
+                <td th:text="${board.category}"></td>
+                <td th:text="${board.user.nickname}"></td>
+                <td th:text="${board.getComments().size()}"></td>
+                <th:block th:if="${board.getComments()!=0}">
+                    <div th:each="comment : ${board.getComments()}">
+                        <td th:text="${comment.content}"></td>
+                        <td th:text="${comment.author}"></td>
+                    </div>
+                </th:block>
+             </tr>
+            </tbody>
+      </table>
+    </div>
 </div>
 </body>
 </html>

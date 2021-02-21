@@ -9,6 +9,10 @@ import com.gongsung.gallery.comment.controller.CommentDto;
 import com.gongsung.gallery.user.dto.UserDto;
 import com.gongsung.gallery.user.repository.UserRepository;
 import com.gongsung.gallery.user.service.UserService;
+import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +40,16 @@ public class BoardController {
     return "board/boardList";
   }
 
-  @GetMapping("/board/{userId}/writeBoard")
-  public String craeteBoard(@PathVariable("userId") Long userId, Model model) {
+  @GetMapping("/board/writeBoard")
+  public String craeteBoard(HttpServletRequest request, HttpServletResponse response,Model model)
+      throws IOException {
+
+    HttpSession httpSession = request.getSession();
+    Long userId = (Long)httpSession.getAttribute("userId");
+
+    if(userId==null){
+      response.getOutputStream().println("Not Authorize!");
+    }
 
     model.addAttribute("boardForm", new Board());
     model.addAttribute("userId", userId);
@@ -45,8 +57,16 @@ public class BoardController {
     return "board/writeBoard";
   }
 
-  @PostMapping("/board/{userId}/writeBoard")
-  public String writeBoard(@PathVariable("userId") Long userId, Board boardForm) {
+  @PostMapping("/board/writeBoard")
+  public String writeBoard(HttpServletRequest request, HttpServletResponse response,Board boardForm)
+      throws IOException {
+
+    HttpSession httpSession = request.getSession();
+    Long userId = (Long)httpSession.getAttribute("userId");
+
+    if(userId==null){
+      response.getOutputStream().println("Not Authorize!");
+    }
 
     User user = userService.findById(userId);
     Board board = boardService.createBoard(user);

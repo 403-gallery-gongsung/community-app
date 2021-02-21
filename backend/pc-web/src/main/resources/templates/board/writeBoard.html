@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-    <form th:action="@{/board/{id}/writeBoard (id=${userId})}"  th:object="${boardForm}" method="post">
+    <form th:action="@{/board/writeBoard}"  th:object="${boardForm}" method="post">
         <label>글쓰기 제목입니다</label>
         <input type="text" th:field="*{title}"
                placeholder="제목을 입력하세요 ">
